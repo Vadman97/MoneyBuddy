@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Serif:400,700|Roboto');
+
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'PT Serif';
+  font-weight: normal;
+  margin-top: 0;
+}
+
+button, .button {
+  background: #2e80fd;
+  background: linear-gradient(to right, #2e80fd, #4f93fb);
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,.12);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin: 5px;
+  min-width: 125px;
+  padding: 10px 30px;
+  transition: all 100ms ease-in-out;
+  text-transform: uppercase;
+}
+
+button.light, .button.light {
+  background: #f9f9f9;
+  background: linear-gradient(to right, #f9f9f9, #f7f7f7);
+  color: #212121
+}
+
+button:hover, .button:hover {
+  cursor: pointer;
+  box-shadow: 0 2px 3px 0 rgba(0,0,0,.12);
+  transform: translateY(1px);
+}
+
+.hidden {
+  display: none;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+}
+
+.nav-title {
+  display: block;
+}
+
+.nav-links {
+  display: inline-flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.nav-links a {
+  margin-left: 10px;
+  text-decoration: none;
+}
