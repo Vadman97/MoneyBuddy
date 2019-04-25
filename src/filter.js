@@ -16,7 +16,7 @@ const searchAwards = function(keywords) {
                     }
                 }
                 if (allPresent) {
-                    results.push(element['URL']);
+                    results.push(element);
                 }
             }
         }
