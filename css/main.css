@@ -9,6 +9,7 @@ body {
   margin: 0;
   background-color: #fafaf0;
   color: #212121;
+  overflow: auto;
 }
 
 a {

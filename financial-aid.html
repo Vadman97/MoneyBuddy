@@ -50,7 +50,7 @@
           </p>
         </div>
         <div class="resource-article">
-          <h3 class="header">What is Financial Aid?</h3>
+          <h3 class="header">Types of Financial Aid</h3>
           <h4 class="subheader">What is Financial Aid?</h3>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sodales semper ligula, id maximus sem laoreet et. Proin facilisis, mi eget consectetur tempor, magna mi dignissim libero, ut aliquet massa sapien ac massa. Maecenas placerat lobortis quam sit amet blandit. Nullam dapibus maximus
@@ -59,8 +59,7 @@
           </p>
         </div>
         <div class="resource-article">
-          <h3 class="header">What is Financial Aid?</h3>
-          <h4 class="subheader">What is Financial Aid?</h3>
+          <h3 class="header">FAFSA</h3>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sodales semper ligula, id maximus sem laoreet et. Proin facilisis, mi eget consectetur tempor, magna mi dignissim libero, ut aliquet massa sapien ac massa. Maecenas placerat lobortis quam sit amet blandit. Nullam dapibus maximus
             Nulla quam leo, aliquam mattis sapien sed, aliquam feugiat ex. Aliquam imperdiet ultricies enim in varius. Aliquam eu eros nulla. Suspendisse interdum hendrerit quam. Fusce metus est, accumsan eget turpis eu, convallis suscipit quam. Donec ac imperdiet enim. Cras tempus metus ac tellus molestie faucibus.
@@ -68,8 +67,15 @@
           </p>
         </div>
         <div class="resource-article">
-          <h3 class="header">What is Financial Aid?</h3>
-          <h4 class="subheader">What is Financial Aid?</h3>
+          <h3 class="header">Cal Grant</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sodales semper ligula, id maximus sem laoreet et. Proin facilisis, mi eget consectetur tempor, magna mi dignissim libero, ut aliquet massa sapien ac massa. Maecenas placerat lobortis quam sit amet blandit. Nullam dapibus maximus
+            Nulla quam leo, aliquam mattis sapien sed, aliquam feugiat ex. Aliquam imperdiet ultricies enim in varius. Aliquam eu eros nulla. Suspendisse interdum hendrerit quam. Fusce metus est, accumsan eget turpis eu, convallis suscipit quam. Donec ac imperdiet enim. Cras tempus metus ac tellus molestie faucibus.
+            Morbi nec volutpat mi, at rhoncus libero. Nam et metus a arcu porttitor dignissim. Aliquam tellus libero, pellentesque quis elementum vitae, rhoncus non mi. In hendrerit dolor lectus, eget elementum nisi tempor nec. Suspendisse eu urna aliquet lectus tempus tincidunt sed in eros. Fusce ultrices nisl pharetra hendrerit interdum.
+          </p>
+        </div>
+        <div class="resource-article">
+          <h3 class="header">CalFresh</h3>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sodales semper ligula, id maximus sem laoreet et. Proin facilisis, mi eget consectetur tempor, magna mi dignissim libero, ut aliquet massa sapien ac massa. Maecenas placerat lobortis quam sit amet blandit. Nullam dapibus maximus
             Nulla quam leo, aliquam mattis sapien sed, aliquam feugiat ex. Aliquam imperdiet ultricies enim in varius. Aliquam eu eros nulla. Suspendisse interdum hendrerit quam. Fusce metus est, accumsan eget turpis eu, convallis suscipit quam. Donec ac imperdiet enim. Cras tempus metus ac tellus molestie faucibus.
@@ -82,9 +88,9 @@
     <script>
       $('.resource-list li').click((e) => {
         var index = $(e.target).index();
-        $(".resource-article").get(index).scrollIntoView(false);
+        var resourceArticles = $(".resource-article");
+        $('html').scrollTop($(resourceArticles[index]).offset().top - 100);
       });
-
     </script>
 </body>
 </html>
