@@ -92,7 +92,17 @@
       });
 
       const updateResources = function(e) {
-        console.log(searchAwards(e.val().split(' ')));
+        $('.resource-list').html("");
+        let resources = searchAwards(e.val().split(' '));
+        for (let resource of resources) {
+          let html = `<div class="resource-article">
+            <a target="_blank" href="${resource["URL"]}"><h3 class="header">${resource["Name"]}</h3>
+            <h4 class="subheader">${resource["Degree"]}</h4>
+            <p>${resource["Details"]}</p></a>
+          </div>`;
+          $('.resource-list').append(html);
+        }
+        console.log(resources);
       };
 
       $("#Keyword").keypress(function() {
