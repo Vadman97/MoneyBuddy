@@ -1948,29 +1948,65 @@ const awards = JSON.parse(`[{
 }]`);
 
 // if multiple keywords, applies AND intersection to keyword results
-const searchAwards = function(keywords) {
-	let results = [];
-    awards.forEach(award => {
-		let hasKeyword = false;
-        for (let k in award) {
-            if (award.hasOwnProperty(k) && k !== "usc") {
-				let allKeyWordsPresent = true;
-                for (let idx in keywords) {
-                    let keyword = keywords[idx].toLowerCase();
-                    if (award[k].toLowerCase().indexOf(keyword) === -1) {
-                        allKeyWordsPresent = false;
-                        break;
-                    }
+/*
+	searchQuery has a format of
+	{
+	   discipline: String
+		 degree: String
+		 demographic: [String]
+	}
+*/
+var searchAwards = function(searchQuery) {
+	var results = [];
+  awards.forEach(function (award) {
+		var keys = ['Discipline', 'Degree', 'Demographic'];
+		var awardMatches = true;
+		keys.forEach(function (key) {
+			var awardKeywords = award[key];
+			if (key !== 'Demographic') {
+				var query = searchQuery[key.toLowerCase()];
+
+				if (awardKeywords === 'Open to All Disciplines' || awardKeywords === '') {
+					return;
 				}
-				if (allKeyWordsPresent) {
-					hasKeyword = true;
-					break;
+
+				if (query === 'Bachelors') {
+					if (
+						awardKeywords.indexOf('Freshman') !== -1 ||
+						awardKeywords.indexOf('Sophomore') !== -1 ||
+						awardKeywords.indexOf('Junior') !== -1 ||
+						awardKeywords.indexOf('Senior') !== -1
+					) {
+						return;
+					}
 				}
-            }
-        }
-		if (hasKeyword) {
+				if (awardKeywords.indexOf(query) === -1) {
+					console.log(award, ' failed');
+					awardMatches = false;
+				}
+			} else {
+				if (awardKeywords.indexOf('All') !== -1) {
+					return;
+				}
+				// this code sucks ass
+				var demographics = searchQuery[key.toLowerCase()];
+				var hasDemographics = false;
+				demographics.forEach(function (demo) {
+					if (awardKeywords.indexOf(query) !== -1) {
+						hasDemographics = true;
+					}
+				});
+
+				if (hasDemographics === false) {
+					console.log(award, ' failed demographic');
+					awardMatches = false;
+				}
+			}
+		});
+
+		if (awardMatches) {
 			results.push(award);
 		}
-    });
-    return results;
+  });
+  return results;
 };

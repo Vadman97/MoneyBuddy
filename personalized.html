@@ -30,87 +30,131 @@
       </div>
     </div>
     <div class="content">
-      <div class="header">
-        <h2>
-          Financial Opportunity Finder
-        </h2>
-        <div>
-          Our financial opportunity finder has over two hundred potential scholarships you can search. We’ll do our best to match you to something that fits your needs!
+      <div class="search-page">
+        <div class="header">
+          <h2>
+            Financial Opportunity Finder
+          </h2>
+          <div>
+            Our financial opportunity finder has over two hundred potential scholarships you can search. We’ll do our best to match you to something that fits your needs!
+          </div>
         </div>
+        <div class="form">
+          <h3>What school do you go to?</h3>
+          <select id="school-select">
+            <option value="USC">USC</option>
+            <option value="UCLA">UCLA</option>
+            <option value="Santa Monica College">Santa Monica College</option>
+          </select>
+          <h3>What is your degree / year?</h3>
+          <select id="year-select">
+            <option value="Bachelors">Bachelors</option>
+            <option value="Masters">Masters</option>
+            <option value="PhD">PhD</option>
+            <option value="Professional Doctorate">Professional Doctorate</option>
+            <option value="Post Doctorate">Post Doctorate</option>
+            <option value="Recently Graduated">Recently Graduated</option>
+          </select>
+          <h3>Select Relevant Demographics</h3>
+          <select id="demographic-select" class="demographic" multiple placeholder="Demographic">
+            <option value="First Generation College students">First Generation College Student</option>
+            <option value="International students">International Student</option>
+            <option value="Demonstrates Financial Need">Demonstrates Financial Need</option>
+            <option value="Minorities">Minority</option>
+            <option value="Women">Woman</option>
+          </select>
+          <h3>Select a Discipline</h3>
+          <select id="discipline-select">
+            <option value="Arts and Humanities">Arts and Humanities</option>
+            <option value="Engineering">Engineering</option>
+            <option value="Life Sciences/ Health Sciences">Life Sciences/ Health Sciences</option>
+            <option value="Physical Sciences">Physical Sciences</option>
+            <option value="Social Sciences">Social Sciences</option>
+          </select>
+        </div>
+        <button id="search">Search</button>
       </div>
-      <div class="form">
-        <h3>What is your degree / year?</h3>
-        <select id="year-select">
-          <option value="Freshman">Freshman</option>
-          <option value="Sophomore">Sophomore</option>
-          <option value="Junior">Junior</option>
-          <option value="Senior">Senior</option>
-          <option value="Bachelors">Bachelors</option>
-          <option value="Masters">Masters</option>
-          <option value="PhD">PhD</option>
-          <option value="Professional Doctorate">Professional Doctorate</option>
-          <option value="Post Doctorate">Post Doctorate</option>
-        </select>
-        <h3>Select Relevant Demographics</h3>
-        <select id="demographic-select" class="demographic" multiple placeholder="Demographic">
-          <option value="Undergraduate">Undergraduate</option>
-          <option value="Recently Graduated">Recently Graduated</option>
-          <option value="First Generation College students">First Generation College Student</option>
-          <option value="International students">International Student</option>
-          <option value="Demonstrates Financial Need">Demonstrates Financial Need</option>
-          <option value="Minorities">Minority</option>
-          <option value="Women">Woman</option>
-        </select>
-        <h3>Select a Discipline</h3>
-        <select id="discipline-select">
-          <option value="Arts and Humanities">Arts and Humanities</option>
-          <option value="Engineering">Engineering</option>
-          <option value="Life Sciences/ Health Sciences">Life Sciences/ Health Sciences</option>
-          <option value="Physical Sciences">Physical Sciences</option>
-          <option value="Social Sciences">Social Sciences</option>
-        </select>
+      <div class="results">
+        <div class="results-header">
+          <h2>
+            Financial Opportunity Finder
+          </h2>
+          <div>
+            Here are the opportunities we found for you:
+          </div>
+        </div>
+        <div class="results-content">
+        </div>
       </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.18.14/slimselect.min.js"></script>
     <script src="src/filter.js"></script>
     <script>
-      new SlimSelect({
-        select: '#year-select',
-        showSearch: false,
+
+      $(document).ready(function() {
+        $('.results').hide();
       });
 
-      new SlimSelect({
-        select: '#demographic-select',
-        placeholder: 'Select a Demographic',
-        showSearch: false,
-      });
+      var select = [];
 
-      new SlimSelect({
-        select: '#discipline-select',
-        showSearch: false,
-      });
+      select.push(
+        new SlimSelect({
+          select: '#school-select',
+          showSearch: false,
+        })
+      );
 
-      const updateResources = function(e) {
-        $('.resource-list').html("");
-        let resources = searchAwards(e.val().split(' '));
+      select.push(
+        new SlimSelect({
+          select: '#year-select',
+          showSearch: false,
+        })
+      );
+
+      select.push(
+        new SlimSelect({
+          select: '#demographic-select',
+          placeholder: 'Select a Demographic',
+          showSearch: false,
+        })
+      );
+
+      select.push(
+        new SlimSelect({
+          select: '#discipline-select',
+          showSearch: false,
+        })
+      );
+
+      const updateResources = function(keywordsMap) {
+        $('.results-content').html("");
+        let resources = searchAwards(keywordsMap);
         for (let resource of resources) {
-          let html = `<div class="resource-article">
-            <a target="_blank" href="${resource["URL"]}"><h3 class="header">${resource["Name"]}</h3>
-            <h4 class="subheader">${resource["Degree"]}</h4>
-            <p>${resource["Details"]}</p></a>
-          </div>`;
-          $('.resource-list').append(html);
+          let html = `
+            <div class="scholarship">
+              <a target="_blank" href="${resource.URL}"><h3 class="header">${resource.Name}</h3></a>
+              <h4 class="subheader">${resource.Degree}</h4>
+              <p>${resource.Details}</p>
+            </div>
+          `;
+          $('.results-content').append(html);
         }
         console.log(resources);
       };
 
-      $("#Keyword").keypress(function() {
-        updateResources($(this));
-      });
-      $("form :input").change(function() {
-        updateResources($(this));
-      });
+      $('#search').click(function() {
+        var keywordMap = {
+          degree: select[1].selected(),
+          demographic: select[2].selected(),
+          discipline: select[3].selected(),
+        };
+        updateResources(keywordMap);
+
+        $('.search-page').hide();
+        $('.results').show();
+      })
+
     </script>
 </body>
 </html>
