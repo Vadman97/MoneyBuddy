@@ -45,7 +45,11 @@
 }
 
 .resource-article:not(:first-child) {
-  margin-top: 100px;
+  margin-top: 50px;
+}
+
+.resource-article:last-child {
+  margin-bottom: 100px;
 }
 
 .resource-content .header {
@@ -65,5 +69,12 @@
   font-family: 'PT Serif', serif;
   letter-spacing: 0.5px;
   font-size: 0.9em;
-  margin: 10px 0;
+  margin: 10px 0 25px;
+}
+
+.resource-content ol {
+  font-family: 'PT Serif', serif;
+  letter-spacing: 0.5px;
+  font-size: 0.9em;
+  margin: 10px 0 25px;
 }
