@@ -1949,23 +1949,28 @@ const awards = JSON.parse(`[{
 
 // if multiple keywords, applies AND intersection to keyword results
 const searchAwards = function(keywords) {
-    let results = [];
-    awards.forEach(element => {
-        for (let k in element) {
-            if (element.hasOwnProperty(k) && k !== "usc") {
-                let allPresent = true;
+	let results = [];
+    awards.forEach(award => {
+		let hasKeyword = false;
+        for (let k in award) {
+            if (award.hasOwnProperty(k) && k !== "usc") {
+				let allKeyWordsPresent = true;
                 for (let idx in keywords) {
                     let keyword = keywords[idx].toLowerCase();
-                    if (element[k].toLowerCase().indexOf(keyword) === -1) {
-                        allPresent = false;
+                    if (award[k].toLowerCase().indexOf(keyword) === -1) {
+                        allKeyWordsPresent = false;
                         break;
                     }
-                }
-                if (allPresent) {
-                    results.push(element);
-                }
+				}
+				if (allKeyWordsPresent) {
+					hasKeyword = true;
+					break;
+				}
             }
         }
+		if (hasKeyword) {
+			results.push(award);
+		}
     });
     return results;
 };
