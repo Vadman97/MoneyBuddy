@@ -1,0 +1,19 @@
+.jumbotron {
+  width: 500px;
+}
+
+.jumbotron .title {
+  font-size: 2rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.jumbotron p {
+  font-size: 16px;
+  line-height: 1.3rem;
+}
+
+.home-image img {
+  height: 350px;
+}

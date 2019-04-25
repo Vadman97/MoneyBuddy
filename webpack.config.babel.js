@@ -3,6 +3,7 @@ const path = require('path');
 
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const debug = process.env.NODE_ENV !== 'production';
 
@@ -13,6 +14,10 @@ const productionPlugins = [
     algorithm: 'gzip',
     test: new RegExp('\\.(js|css)$'),
   }),
+  new HtmlWebpackPlugin({
+    filename: 'index.html',
+    template: './index.html',
+  }),
 ];
 
 module.exports = {
@@ -22,6 +27,7 @@ module.exports = {
   ],
   output: {
     path: path.join(__dirname, 'dist'),
+    publicPath: '/dist',
     filename: '[name].js',
     chunkFilename: '[name].js',
   },
