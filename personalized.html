@@ -10,10 +10,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link href="css/vendor/normalize.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.18.14/slimselect.min.css">
     <link href="css/main.css" rel="stylesheet">
-    <link href="css/resource.css" rel="stylesheet">
+    <link href="css/personalized.css" rel="stylesheet">
 </head>
-
 <body>
     <div class="navbar">
       <a href="/">
@@ -30,119 +30,67 @@
       </div>
     </div>
     <div class="content">
-      <div class="resource-content">
-        <div class="resource-article">
-          <h3 class="header">Enter your scenario for personalized financial resources.</h3>
-          <form name="frmSearch" id="frmSearch" title="frmSearch">
-            <table width="100%" border="0" cellspacing="0" cellpadding="5" id="resource-input">
-              <tbody>
-                <tr>
-                  <th>Degree</th>
-                  <th>Demographic</th>
-                  <th>Discipline</th>
-                  <th>Keyword</th>
-                </tr>
-                <tr>
-                  <td data-th="Degree">
-                      <input name="AcademicLevel" type="checkbox" id="AcademicLevel" title="AcademicLevel" value="93">
-                      Freshman<br>
-                      
-                      <input name="AcademicLevel" type="checkbox" id="AcademicLevel" title="AcademicLevel" value="94">
-                      Sophomore<br>
-                      
-                      <input name="AcademicLevel" type="checkbox" id="AcademicLevel" title="AcademicLevel" value="95">
-                      Junior<br>
-                      
-                      <input name="AcademicLevel" type="checkbox" id="AcademicLevel" title="AcademicLevel" value="96">
-                      Senior<br>
-                      
-                      <input name="AcademicLevel" type="checkbox" id="AcademicLevel" title="AcademicLevel" value="97">
-                      Bachelors degree<br>
-                      
-                      <input name="AcademicLevel" type="checkbox" id="AcademicLevel" title="AcademicLevel" value="58">
-                      Masters<br>
-                      
-                      <input name="AcademicLevel" type="checkbox" id="AcademicLevel" title="AcademicLevel" value="59">
-                      PhD<br>
-                      
-                      <input name="AcademicLevel" type="checkbox" id="AcademicLevel" title="AcademicLevel" value="60">
-                      Professional Doctorate<br>
-                      
-                      <input name="AcademicLevel" type="checkbox" id="AcademicLevel" title="AcademicLevel" value="61">
-                      Post Doctorate<br>
-                      
-                      <input name="AcademicLevel" type="checkbox" id="AcademicLevel" title="AcademicLevel" value="99">
-                      Undergraduate<br>
-                      
-                      <input name="AcademicLevel" type="checkbox" id="AcademicLevel" title="AcademicLevel" value="100">
-                      Recently Graduated <br>
-                      </td>
-                  <td data-th="Demographic">
-                    <input name="Demographic" type="checkbox" id="Demographic" title="Demographic" value="27">
-                    First generation college students <br>
-                    
-                    <input name="Demographic" type="checkbox" id="Demographic" title="Demographic" value="28">
-                    International students<br>
-                    
-                    <input name="Demographic" type="checkbox" id="Demographic" title="Demographic" value="29">
-                    Demonstrates Financial Need<br>
-                    
-                    <input name="Demographic" type="checkbox" id="Demographic" title="Demographic" value="30">
-                    Minorities<br>
-                    
-                    <input name="Demographic" type="checkbox" id="Demographic" title="Demographic" value="31">
-                    USC students<br>
-                    
-                    <input name="Demographic" type="checkbox" id="Demographic" title="Demographic" value="33">
-                    Women<br>
-                    </td>
-                  <td data-th="Discipline">
-                    <input name="Discipline" type="checkbox" id="Discipline" title="Discipline" value="76">
-                    Arts and Humanities<br>
-                    
-                    <input name="Discipline" type="checkbox" id="Discipline" title="Discipline" value="77">
-                    Engineering<br>
-                    
-                    <input name="Discipline" type="checkbox" id="Discipline" title="Discipline" value="81">
-                    Interdisciplinary<br>
-                    
-                    <input name="Discipline" type="checkbox" id="Discipline" title="Discipline" value="78">
-                    Life Sciences/ Health Sciences<br>
-                    
-                    <input name="Discipline" type="checkbox" id="Discipline" title="Discipline" value="79">
-                    Physical Sciences<br>
-                    
-                    <input name="Discipline" type="checkbox" id="Discipline" title="Discipline" value="80">
-                    Social Sciences<br>
-                    </td>
-                  <td data-th="Keyword"><input name="Keyword" type="text" id="Keyword" title="Keyword"></td>
-                </tr>
-              </tbody>
-            </table>
-          </form>
+      <div class="header">
+        <h2>
+          Financial Opportunity Finder
+        </h2>
+        <div>
+          Our financial opportunity finder has over two hundred potential scholarships you can search. We’ll do our best to match you to something that fits your needs!
         </div>
-        <div class="resource-article">
-          <h3 class="header">Types of Financial Aid</h3>
-          <h4 class="subheader">Gift Aid</h4>
-          <p>
-            Gift Aid is financial aid that does not need to be repaid, unlike loans. It can be broken down into
-            two categories, scholarships, and grants. Scholarships are generally merit-based, although some can
-            be need-based. Grants are generally need-based. Both can come from federal, state, or private sources.
-            For USC specific scholarships, see our personalized section for recommended scholarships based on your unique situation.
-          </p>
-        </div>
+      </div>
+      <div class="form">
+        <h3>What is your degree / year?</h3>
+        <select id="year-select">
+          <option value="Freshman">Freshman</option>
+          <option value="Sophomore">Sophomore</option>
+          <option value="Junior">Junior</option>
+          <option value="Senior">Senior</option>
+          <option value="Bachelors">Bachelors</option>
+          <option value="Masters">Masters</option>
+          <option value="PhD">PhD</option>
+          <option value="Professional Doctorate">Professional Doctorate</option>
+          <option value="Post Doctorate">Post Doctorate</option>
+        </select>
+        <h3>Select Relevant Demographics</h3>
+        <select id="demographic-select" class="demographic" multiple placeholder="Demographic">
+          <option value="Undergraduate">Undergraduate</option>
+          <option value="Recently Graduated">Recently Graduated</option>
+          <option value="First Generation College students">First Generation College Student</option>
+          <option value="International students">International Student</option>
+          <option value="Demonstrates Financial Need">Demonstrates Financial Need</option>
+          <option value="Minorities">Minority</option>
+          <option value="Women">Woman</option>
+        </select>
+        <h3>Select a Discipline</h3>
+        <select id="discipline-select">
+          <option value="Arts and Humanities">Arts and Humanities</option>
+          <option value="Engineering">Engineering</option>
+          <option value="Life Sciences/ Health Sciences">Life Sciences/ Health Sciences</option>
+          <option value="Physical Sciences">Physical Sciences</option>
+          <option value="Social Sciences">Social Sciences</option>
+        </select>
       </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.18.14/slimselect.min.js"></script>
     <script src="src/filter.js"></script>
     <script>
-      $('.resource-list li').click((e) => {
-        var index = $(e.target).index();
-        var resourceArticles = $(".resource-article");
-        $('html').scrollTop($(resourceArticles[index]).offset().top - 100);
+      new SlimSelect({
+        select: '#year-select',
+        showSearch: false,
       });
-    </script>
-    <script>
+
+      new SlimSelect({
+        select: '#demographic-select',
+        placeholder: 'Select a Demographic',
+        showSearch: false,
+      });
+
+      new SlimSelect({
+        select: '#discipline-select',
+        showSearch: false,
+      });
+
       const updateResources = function(e) {
         console.log(searchAwards(e.val().split(' ')));
       };
