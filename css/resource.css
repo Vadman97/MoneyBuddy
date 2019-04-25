@@ -72,7 +72,8 @@
   margin: 10px 0 25px;
 }
 
-.resource-content ol {
+.resource-content ol,
+.resource-content ul {
   font-family: 'PT Serif', serif;
   letter-spacing: 0.5px;
   font-size: 0.9em;
